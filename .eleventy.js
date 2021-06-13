@@ -10,7 +10,7 @@ const path = require('path')
 
 async function imageShortcode(src, alt) {
   let sizes = "(min-width: 1024px) 100vw, 50vw"
-  let srcPrefix = `./src/static/img`
+  let srcPrefix = `./src/static/img/`
   src = srcPrefix + src
   console.log(`Generating image(s) from:  ${src}`)
   if(alt === undefined) {
