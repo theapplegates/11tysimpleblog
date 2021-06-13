@@ -16,15 +16,15 @@ async function imageShortcode(src, alt) {
   if(alt === undefined) {
     // Throw an error on missing alt (alt="" works okay)
     throw new Error(`Missing \`alt\` on responsiveimage from: ${src}`)
-  }
+  }  
   let metadata = await Image(src, {
     widths: [600, 900, 1500],
     formats: ['avif', 'webp', 'jpeg'],
-    urlPath: "/static/img/",
+    urlPath: "/images/",
     outputDir: "./_site/images/",
     /* =====
-    Now we'll make sure each resulting file's name will
-    make sense to you. **This** is why you need
+    Now we'll make sure each resulting file's name will 
+    make sense to you. **This** is why you need 
     that `path` statement mentioned earlier.
     ===== */
     filenameFormat: function (id, src, width, format, options) {
@@ -32,8 +32,8 @@ async function imageShortcode(src, alt) {
       const name = path.basename(src, extension)
       return `${name}-${width}w.${format}`
     }
-  })
-  let lowsrc = metadata.jpeg[0]
+  })  
+  let lowsrc = metadata.jpeg[0]  
   return `<picture>
     ${Object.values(metadata).map(imageFormat => {
       return `  <source type="${imageFormat[0].sourceType}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}" sizes="${sizes}">`
