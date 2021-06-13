@@ -10,7 +10,7 @@ const path = require('path')
 
 async function imageShortcode(src, alt) {
   let sizes = "(min-width: 1024px) 100vw, 50vw"
-  let srcPrefix = `./src/static/img/`
+  let srcPrefix = `./src/assets/images/`
   src = srcPrefix + src
   console.log(`Generating image(s) from:  ${src}`)
   if(alt === undefined) {
@@ -20,7 +20,7 @@ async function imageShortcode(src, alt) {
   let metadata = await Image(src, {
     widths: [600, 900, 1500],
     formats: ['avif', 'webp', 'jpeg'],
-    urlPath: "./static/img/",
+    urlPath: "/static/img/",
     outputDir: "./_site/images/",
     /* =====
     Now we'll make sure each resulting file's name will
